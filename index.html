@@ -10,7 +10,9 @@
     
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap" rel="stylesheet">-->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    
+     <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap" rel="stylesheet">
          <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     
     
@@ -21,7 +23,7 @@
         body {
             height: 100vh;
             margin: 0;
-           /* font-family: Arial, sans-serif;*/
+            font-family: Arial, sans-serif;
             background-color: #fff;
             width:55vh;
             height: 110vh;
@@ -36,6 +38,16 @@
 }
 
 */
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 200 to 700
+
+.oswald-<uniquifier> {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
         .game-container {
             display: flex;
             flex-direction: column;
@@ -121,6 +133,7 @@
             width: 100%;
             left: -1em;
             text-align: center;
+            font-family: "Oswald", sans-serif;
             background: black;
             color: #fff;
             height: 2em;
@@ -193,7 +206,7 @@
            }
            .bot_container{
              display: flex;
-             width:;
+             width:
            }
         
         .user_names {
@@ -330,10 +343,10 @@
             cursor: pointer;
             
             display:block;
-           font-family: Arial;
+           font-family: Arial, Helvetica, sans-serif;
            letter-spacing: 5px;
-            color: white;
-        /*    -webkit-text-stroke: 0.2px white;*/
+            color: transparent;
+            -webkit-text-stroke: 0.2px white;
             background: transparent;
             border: 0.5px solid #004AFF;
             box-shadow: 0px 0px 15px #3171EE;
@@ -516,7 +529,6 @@
             from, to { border-color: transparent; }
             50% { border-color: #E82929;
             box-shadow: 0 0 10px  #E82929EB;
-            
               
             }
         }
@@ -1093,11 +1105,11 @@ if its take zoom in otherwise no need -->
 
     
     <div class="st_game">
-      <audio preload="auto" autoplay id="typing" style="display: none;" src="!typing.wav" ></audio>
+      <audio preload="auto" autoplay id="typing" style="display: none;" src="/htyping.wav" ></audio>
         <div class="card">
               <div class="line"></div>
             <div class="card-content">
-                <h1 class="first_card">TIC TAC TOE</h1>
+                <h1 style="font-family: "Oswald", sans-serif;" class="first_card">TIC TAC TOE</h1>
                 <p>Welcome to the tic tac toe</p>
                 <p>game by 46du1_waseem's.</p> <p>click below button to</p>   <p>start the game</p>
                 <button onclick="onsecondpage()">start now</button>
@@ -1418,9 +1430,9 @@ function price_off(){
             let rnd2_o='';
             let rnd3_x = '';
             let rnd3_o = '';
-            var rd_ch=0;
-            var cont_x=0;
-            var cont_o=0;
+            let rd_ch=0;
+            let cont_x=0;
+            let cont_o=0;
             
             let cells;
             let currentPlayer;
@@ -1788,9 +1800,18 @@ function checkResult() {
           
           
           const cl = cells[b];
+          let x_1=0;
+          let x_2=0;
+          let x_3=0;
+          
+          let o_1=0;
+          let o_2=0;
+          let o_3=0;
+          let t_x=0;
+          let t_o=0;
           if(cl==='O'){
             
-            if(rd_ch!==3){
+            if(rnd3_o.innerHTML===''){
               rd_ch+=1;
             if (rnd1_o.innerText === '') {
               rnd1_o.innerText = '1';
@@ -1804,11 +1825,25 @@ function checkResult() {
               cont_o +=1;
               
             }
-            else /*(!rnd2_o.innerText === '' && rnd3_o.innerText === '')*/ {
+          else if (rnd2_o.innerText !== '' && rnd3_o.innerText === '') {
               rnd3_o.innerText = '1';
               rnd3_x.innerText = '0';
               cont_o+=1;
-            }}
+              o_1 = rnd1_o.innerHTML;
+              o_2 = rnd2_o.innerHTML;
+              o_3 = rnd3_o.innerHTML;
+              o_1 = parseInt(o_1, 10);
+              o_2 = parseInt(o_2, 10);
+              o_3 = parseInt(o_3, 10);
+              
+              console.log(o_3);
+              let t_o = o_1 + o_2 + o_3;
+              if (t_x < t_o) {
+                document.getElementById('win_tab').innerHTML = 'winner' + '(' + secondUser + ')';
+              }
+            }
+            
+            }
             else{
               
             }
@@ -1818,7 +1853,7 @@ function checkResult() {
           }
           if(cl==='X'){
             
-            if (rd_ch !== 3) {
+            if (rnd3_x.innerHTML==='') {
               rd_ch += 1;
             if(rnd1_x.innerText ===''){
               cont_x+=1;
@@ -1830,14 +1865,26 @@ function checkResult() {
               rnd2_x.innerText='1';
               rnd2_o.innerText ='0';
             }
-            else /* if (!rnd2_x.innerHTML === '' && rnd3_x.innerHTML === '')*/ {
+            else  if (rnd2_x.innerHTML !== '' && rnd3_x.innerHTML === '') {
               cont_x+=1;
               rnd3_x.innerText = '1';
               rnd3_o.innerText = '0';
+              x_1 = rnd1_x.innerHTML;
+              x_2 = rnd2_x.innerHTML;
+              x_3 = rnd3_x.innerHTML;
+              x_1 = parseInt(x_1, 10);
+              x_2 = parseInt(x_2, 10);
+              x_3 = parseInt(x_3, 10);
+              
+              t_x = x_1 + x_2 + x_3;
+              if (t_x > t_o) {
+                document.getElementById('win_tab').innerHTML = 'winner' + '(' + firstUser + ')';
+              }
             }
+            
             }
           else{
-            
+              
           }
             document.getElementById('win_x_or_o').innerHTML= cl;
           document.getElementById('win_x_or_o').style.color= 'red';
@@ -1862,14 +1909,14 @@ function checkResult() {
       rmwintxt.style.color='yellow';
       rmwintxt.style.textShadow= '0 0 20px rgba(255, 233, 0, 1), 0 0 30px rgba(255, 233, 0, 1)';
       
-       if (rd_ch === 3) {
-         if(cont_x > cont_o){
+   /*    if (rd_ch===3) {
+         if(t_x > t_o){
            document.getElementById('win_tab').innerHTML='winner'+'('+firstUser+')';
          }
-         else{
+         else if(t_o>t_x){
            document.getElementById('win_tab').innerHTML='winner'+'('+secondUser+')';
          }
-       }
+       }*/
       
        /*   winnerText.textContent = `Congratulations ${winningPlayer}! You win!`;*/
        document.getElementById('background_music').pause();
