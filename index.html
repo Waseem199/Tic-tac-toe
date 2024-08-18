@@ -579,7 +579,7 @@
   top: -5%;
   left: 0;
   background: red;
-  animation: ld 7.5s infinite ease-in-out;
+  animation: ld 6.5s infinite ease-in-out;
   overflow: hidden;
 }
 @keyframes ld{
@@ -1535,8 +1535,12 @@ function price_off(){
              alert('Please select bot otherwise enter second play uncheck the bot');
            }*/
                 else {
+                 if(firstUser && secondUser){
+                   }
+                 else{
                     alert('Please enter both player names ');
                 }
+            }
             }
 
             function initGame() {
@@ -1941,7 +1945,7 @@ function checkResult() {
             else{
             document.getElementById('background_music').play();
             }
-          }, 7500);
+          }, 6500);
           
           return;
             roundWon = true;
